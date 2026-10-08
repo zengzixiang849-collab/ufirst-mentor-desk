@@ -1,0 +1,10 @@
+// Cloudflare Workers 静态资源部署配置
+// 部署命令：npx wrangler deploy（Cloudflare 构建时会自动执行）
+{
+  "name": "ufirst-mentor-desk",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash"
+  }
+}

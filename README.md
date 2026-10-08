@@ -13,8 +13,8 @@ and Saturday field practice, student support and faculty liaison.
 
 | 文件 / File | 语言 / Language | 说明 |
 | --- | --- | --- |
-| `index.html` | 中文 | 主版本，日常使用 |
-| `index-en.html` | English | 给外教 / 国际同事，内容与中文版一一对应 |
+| `public/index.html` | 中文 | 主版本，日常使用 |
+| `public/index-en.html` | English | 给外教 / 国际同事，内容与中文版一一对应 |
 
 两版**共用同一份浏览器数据**（`localStorage` key: `ufirst_workbench_v2`）：
 在同一台电脑的同一浏览器里，任何一个版本里做的改动，另一个版本都同步可见。
@@ -62,9 +62,17 @@ Swipe up/down to browse — only a **sideways** drag picks up a card. On phones,
 
 纯静态站点，无构建步骤，无依赖。可直接部署到任意静态托管：
 
-- **Cloudflare Pages**：连接本仓库 → Framework preset 选 `None` → Build command 留空 → Build output directory 填 `/` → Deploy。
-- **GitHub Pages**：Settings → Pages → Source 选 `Deploy from a branch` → 分支 `main` / 目录 `/ (root)`。
-- 本地使用：直接双击 `index.html`。
+- 本地使用：直接双击 `public/index.html`。
+
+No build step, no dependencies — plain static files.
+
+### Cloudflare Workers（当前采用 · current setup）
+
+仓库根目录的 `wrangler.jsonc` 已配置静态资源部署，`public/` 即站点根：
+
+- **Cloudflare 构建流程**：连接仓库后 Deploy command 保持 `npx wrangler deploy`，Build command 留空，直接 Deploy。
+- **手动部署**：`npx wrangler deploy`
+- 访问入口：`/`（中文版）与 `/index-en.html`（英文版）。
 
 No build step, no dependencies — plain static files.
 
